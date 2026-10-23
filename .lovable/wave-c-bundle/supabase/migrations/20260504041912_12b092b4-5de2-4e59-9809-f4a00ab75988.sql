@@ -1,1 +1,0 @@
-UPDATE content_plan SET status='pending', last_error=NULL WHERE status='generating';

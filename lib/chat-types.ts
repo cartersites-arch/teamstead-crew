@@ -1,0 +1,6 @@
+export type Person = {id:string; name:string; email?:string; role:string; active:number; joined_at:number;status?:'available'|'working'|'away'|'driving'|null;job_title?:string;photo_url?:string;status_expires_at?:number};
+export type Room = {id:string; name:string; description:string; kind:'channel'|'dm'|'bot'; visibility:'shared'|'private'; created_by:string; unread:number; memberIds:string[]; last_at:number;favorite?:number;section?:string;notification?:'all'|'mentions'|'muted';};
+export type Attachment = {id:string; message_id:string; name:string; mime:string; size:number};
+export type Reaction = {emoji:string; count:number; mine:number};
+export type Message = {id:string; room_id:string; user_id:string; parent_id:string|null; body:string; created_at:number; edited_at:number|null; deleted:number; pinned:number; author:string; reply_count:number; attachments:Attachment[]; saved?:number;reactions:Reaction[]};
+export type ChatState = {billingRequired?:boolean;products?:{plan:'chat'|'hub'|'parts'|'combined'|'chat_parts'|'hub_parts'|'complete';chat:boolean;hub:boolean;parts:boolean};companyReady?:boolean;me:Person; workspace:{id:string;name:string;owner_id:string;ai_enabled:number;has_logo?:number}; members:Person[]; rooms:Room[]; invitations:{email:string;name:string;room_ids:string}[]};

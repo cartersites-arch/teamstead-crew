@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "suite": "independent-setup-local-regressions",
+  "checkedAt": "2026-10-06T20:49:18.505Z",
+  "status": "passed",
+  "command": "node qa/independent-setup-checks.mjs",
+  "networkUsed": false,
+  "cloudflareCommandsRun": false,
+  "realSecretFilesRead": false,
+  "checks": [
+    {
+      "name": "setup.complete_unexpired_files_are_kept_without_writes",
+      "status": "passed"
+    },
+    {
+      "name": "setup.missing_owner-setup.txt_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.missing_origin.txt_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.wrong_recorded_origin_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.wrong_link_origin_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.wrong_link_path_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.wrong_link_token_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.short_key_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.invalid_expiry_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.expired_first_grant_fails_without_key_change",
+      "status": "passed"
+    },
+    {
+      "name": "setup.deployed_workspace_may_keep_expired_original_grant",
+      "status": "passed"
+    },
+    {
+      "name": "setup.new_synthetic_files_are_complete_private_and_not_logged",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.first_expired_grant_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.zero_expiry_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.negative_expiry_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.nonnumeric_expiry_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.nonfinite_expiry_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.missing_expiry_stops_in_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.valid_first_grant_passes_local_preflight",
+      "status": "passed"
+    },
+    {
+      "name": "deploy.receipted_update_accepts_expired_original_grant",
+      "status": "passed"
+    }
+  ],
+  "sourceHashes": {
+    "scripts/setup-secrets.mjs": "17b941a2f4ef4fa738f9c747817fa7a2fd64a6d423b2cd71fefb2626e03cfebd",
+    "scripts/deploy.mjs": "5b914a983161da33cb7578fbbcd92c577a4f98f9294da82c143b50283cd42db3",
+    "qa/independent-setup-checks.mjs": "d04c599f5db6a459277f873454ef21dec7b094214ba4deaa4207d8507fe48c08"
+  },
+  "limitations": [
+    "Uses synthetic in-memory files and mocked file/process functions; no private setup files are read or written.",
+    "Deployment coverage stops at the local secret/fingerprint/expiry preflight before any command invocation; remote deployment behavior is not tested."
+  ]
+}

@@ -1,7 +1,38 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "founders-click",
-  "compatibility_date": "2025-09-24",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "src/server.ts",
+  "name": "teamstead-crew",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api",
+      "/api/*",
+      "/maintenance/open",
+      "/maintenance/open/*"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "teamstead-crew",
+      "database_id": "24543c2f-3d1f-4313-b46f-0708b6db28a1",
+      "migrations_dir": "drizzle"
+    }
+  ],
+  "r2_buckets": [{"binding":"CHAT_PHOTOS","bucket_name":"teamstead-chat-photos"}],
+  "observability": {
+    "enabled": false
+  },
+  "vars": {
+    "WEBAUTHN_RP_ID": "teamstead-crew.pages.dev",
+    "WEBAUTHN_ORIGIN": "https://teamstead-crew.pages.dev"
+  }
 }

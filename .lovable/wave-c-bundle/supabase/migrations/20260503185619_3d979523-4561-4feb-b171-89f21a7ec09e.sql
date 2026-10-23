@@ -1,1 +1,0 @@
-drop policy if exists "Anyone can join waitlist" on public.pool_waitlist;

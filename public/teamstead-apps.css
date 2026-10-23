@@ -1,0 +1,68 @@
+.teamstead-app-switcher {
+  position: fixed;
+  top: calc(86px + env(safe-area-inset-top));
+  right: 18px;
+  z-index: 1000;
+  width: auto;
+  color: var(--pms-ink, #20394d);
+}
+
+.teamstead-app-switcher summary {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--pms-line-strong, #b9cad6);
+  border-radius: 10px;
+  background: var(--pms-surface, #fff);
+  color: var(--pms-ink, #20394d);
+  display: inline-flex;
+  align-items: center;
+  float: right;
+  font: 800 12px/1.2 system-ui, sans-serif;
+  cursor: pointer;
+  list-style: none;
+  box-shadow: 0 12px 28px rgba(33, 68, 91, .16);
+}
+
+.teamstead-app-switcher summary::-webkit-details-marker { display: none; }
+.teamstead-app-switcher summary::after { content: "▾"; margin-left: 8px; color: var(--pms-accent, #166a65); }
+.teamstead-app-switcher[open] summary { border-color: var(--pms-accent, #166a65); }
+.teamstead-app-switcher summary:focus-visible { outline: 3px solid #78c8c3; outline-offset: 2px; }
+
+.teamstead-app-switcher nav {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 224px;
+  padding: 8px;
+  border: 1px solid var(--pms-line-strong, #b9cad6);
+  border-radius: 12px;
+  background: var(--pms-surface, #fff);
+  display: grid;
+  gap: 4px;
+  box-shadow: 0 22px 60px rgba(33, 68, 91, .22);
+}
+
+.teamstead-app-switcher nav a,
+.teamstead-app-switcher nav span {
+  min-height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: var(--pms-ink, #20394d);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font: 750 13px/1.2 system-ui, sans-serif;
+}
+
+.teamstead-app-switcher nav a:hover,
+.teamstead-app-switcher nav a:focus-visible { background: var(--pms-accent-soft, #d6efed); color: var(--pms-accent, #166a65); }
+.teamstead-app-switcher nav a:focus-visible { outline: 3px solid #78c8c3; outline-offset: 1px; }
+.teamstead-app-switcher nav span { background: var(--pms-accent, #166a65); color: #fff; }
+
+[data-teamstead-redundant-app-link="true"] { display: none !important; }
+
+@media (max-width: 680px) {
+  .teamstead-app-switcher { top: calc(74px + env(safe-area-inset-top)); right: 10px; }
+  .teamstead-app-switcher summary { min-height: 40px; padding-inline: 11px; }
+  .teamstead-app-switcher nav { width: min(224px, calc(100vw - 20px)); }
+}

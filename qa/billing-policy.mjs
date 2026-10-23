@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {build} from 'esbuild';
+const result=await build({entryPoints:['lib/billing-policy.ts'],bundle:true,write:false,format:'esm'});
+const {billingAccess}=await import('data:text/javascript;base64,'+Buffer.from(result.outputFiles[0].text).toString('base64'));
+const start=1000000000,day=86400000;
+assert.equal(billingAccess('active',null,start).allowed,true);
+assert.equal(billingAccess('trialing',null,start).allowed,true);
+assert.equal(billingAccess('past_due',start,start+7*day-1).allowed,true);
+assert.equal(billingAccess('past_due',start,start+7*day).allowed,false);
+assert.equal(billingAccess('past_due',null,start).allowed,false);
+assert.equal(billingAccess('canceled',start,start).allowed,false);
+assert.equal(billingAccess('unpaid',start,start).allowed,false);
+console.log('7 billing policy boundary checks passed.');

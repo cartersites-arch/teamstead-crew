@@ -1,0 +1,14 @@
+{
+  "id": "/",
+  "name": "Teamstead Crew",
+  "short_name": "Teamstead Crew",
+  "description": "Your private team conversations and maintenance workspace.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f9f5",
+  "theme_color": "#154e48",
+  "icons": [
+    { "src": "/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "suite": "independent-client",
+  "status": "passed",
+  "checkedAt": "2026-10-07T03:23:30.634Z",
+  "runtime": {
+    "node": "v24.19.0",
+    "typescript": "5.9.3"
+  },
+  "command": "node qa/independent-client-checks.mjs",
+  "networkUsed": false,
+  "cloudflareCommandsRun": false,
+  "checks": [
+    {
+      "name": "photo.quality_and_shrink_loops_512k_1600px_white_background",
+      "status": "passed"
+    },
+    {
+      "name": "photo.small_jpeg_reencoded",
+      "status": "passed"
+    },
+    {
+      "name": "photo.small_valid_gif_kept_without_flattening",
+      "status": "passed"
+    },
+    {
+      "name": "photo.reject_large_gif",
+      "status": "passed"
+    },
+    {
+      "name": "photo.reject_over_5mb",
+      "status": "passed"
+    },
+    {
+      "name": "photo.reject_unsupported_type",
+      "status": "passed"
+    },
+    {
+      "name": "photo.reject_empty_file",
+      "status": "passed"
+    },
+    {
+      "name": "photo.reject_false_gif_signature",
+      "status": "passed"
+    },
+    {
+      "name": "photo.decode_failure_releases_object_url",
+      "status": "passed"
+    },
+    {
+      "name": "photo.missing_canvas_releases_object_url",
+      "status": "passed"
+    },
+    {
+      "name": "photo.encoder_failure_releases_object_url",
+      "status": "passed"
+    },
+    {
+      "name": "photo.uncompressible_output_rejected_after_bounded_attempts",
+      "status": "passed"
+    },
+    {
+      "name": "photo.cancel_before_start",
+      "status": "passed"
+    },
+    {
+      "name": "photo.cancel_during_decode_releases_object_url",
+      "status": "passed"
+    },
+    {
+      "name": "photo.cancel_during_encode_releases_object_url",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.install_caches_only_generic_page_without_credentials",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.activation_only_removes_old_owned_cache",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.navigation_never_caches_private_response",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.offline_navigation_uses_generic_fallback",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.api_photos_post_subresources_cross_origin_bypass",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.refuses_non_generic_offline_response",
+      "status": "passed"
+    },
+    {
+      "name": "service_worker.has_no_background_send_handlers",
+      "status": "passed"
+    },
+    {
+      "name": "composer.processing_blocks_stale_edits_removal_send_and_additional_files",
+      "status": "passed"
+    },
+    {
+      "name": "composer.room_switch_invalidates_pending_photos",
+      "status": "passed"
+    },
+    {
+      "name": "composer.account_switch_invalidates_pending_photos",
+      "status": "passed"
+    },
+    {
+      "name": "composer.unmount_invalidates_pending_photos",
+      "status": "passed"
+    },
+    {
+      "name": "composer.programmatic_draft_edit_invalidates_pending_photos",
+      "status": "passed"
+    },
+    {
+      "name": "composer.failed_batch_preserves_existing_text_and_photos_atomically",
+      "status": "passed"
+    },
+    {
+      "name": "composer.only_explicit_send_and_same_nonce_retry_send",
+      "status": "passed"
+    },
+    {
+      "name": "composer.mention_picker_selects_member_without_sending",
+      "status": "passed"
+    },
+    {
+      "name": "composer.pdf_keeps_bytes_and_rejects_oversize",
+      "status": "passed"
+    },
+    {
+      "name": "composer.rejects_over_three_photos_and_over_5mb_originals",
+      "status": "passed"
+    },
+    {
+      "name": "install.manifest_and_icon_references",
+      "status": "passed"
+    },
+    {
+      "name": "typescript.no_emit",
+      "status": "passed"
+    }
+  ],
+  "sourceHashes": {
+    "lib/prepare-photo.ts": "e3101e809e215a9239f6d4cd1b7d31ebaf146b627791885452e83114596bf421",
+    "app/chat-app.tsx": "2141220c6fcd32ad98b9da48db19e7dc47d7218371a43792928eeb0b1183c160",
+    "public/manifest.webmanifest": "97784792f8dc3be61dc838dda71013d294b740d4b0c3b5460426dd34f5a48bc5",
+    "public/sw.js": "707331df75b40aa20f4fb846710862e025bb4d94138e0aa17eda906f04a6c4e0",
+    "public/offline.html": "f9a36971e8e6aca711cae0f8ea20f4828f464c2b2db450d326d29987bd22aba3",
+    "public/app-icon.svg": "4de30a73fe0ed8c46be4b52192f76df26b17b545ce95a0f0e7e722d85d146cf3",
+    "index.html": "b5ccc6e4f48880accab27fd35986bafebd32cd62e78fec3b56eaaca8cd9dadb9",
+    "qa/independent-client-checks.mjs": "8015e954dcce0e01ef59abb99403367afeacc4bf1cabefa2120e50ca124bc8d5"
+  },
+  "limitations": [
+    "Image decoding and canvas encoding use mocked browser APIs; real image fidelity, orientation, performance and native codec behavior have not been exercised.",
+    "Composer checks invoke transpiled handlers with a minimal hook/element harness; these are not real React DOM, browser rendering or physical-device tests.",
+    "Service-worker fetch/cache/lifecycle use in-memory mocks; installation, offline browser behavior and platform icon support have not been tested on actual devices.",
+    "No native passkey, Cloudflare account, deployment, remote migration, billing or network checks run in this suite."
+  ]
+}

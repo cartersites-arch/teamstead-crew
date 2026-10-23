@@ -1,0 +1,1 @@
+ALTER TABLE `workspace` ADD `access_bootstrapped` integer DEFAULT 0 NOT NULL;

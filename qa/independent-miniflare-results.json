@@ -1,0 +1,43 @@
+{
+  "status": "failed",
+  "startedAt": "2026-10-07T02:30:17.351Z",
+  "scope": "Actual lib/photo-storage.ts API and actual migrations in local Miniflare D1; no auth/router coverage",
+  "limitations": [
+    "Local workerd/Miniflare verification only; no deployed Cloudflare requests, account access, or production data.",
+    "Does not establish deployed Cloudflare CPU time, free-tier capacity, latency, or production quota behavior.",
+    "Quota contention uses the actual triggers with a reduced isolated test budget; it does not fill 64 MiB.",
+    "No browser, authentication, authorization, full application router, or complete security audit coverage."
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "miniflare": "4.20260515.0",
+    "esbuild": "0.28.0"
+  },
+  "network": {
+    "outboundService": "Reject every Worker outbound request locally with HTTP 503",
+    "cf": false,
+    "remoteBindings": false,
+    "wranglerInvoked": false,
+    "outboundAttempts": []
+  },
+  "assertions": 0,
+  "requestCount": 0,
+  "migrations": [],
+  "sourceHashes": {
+    "lib/photo-storage.ts": "e86855c7677113a6585284d2347415dbd8389246b26b2214ced7dba46e983ef1",
+    "lib/chat-db.ts": "902865809a807b8fbd1b1c9be9d2ef6ae4bb5bcf5f342db559bb43c25656b35a",
+    "lib/app-errors.ts": "171a60179fa1ddd157ed073c921afc43e68999e3e236e7b704242020c0be27dc"
+  },
+  "groups": [],
+  "workerInputs": [
+    "lib/chat-db.ts",
+    "lib/app-errors.ts",
+    "lib/photo-storage.ts",
+    "qa/independent-miniflare-worker.ts"
+  ],
+  "bundleHash": "059b351b6da9706b0ae55fc493847dd050fb1f91d0770794a2b8bd98447a3695",
+  "error": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above.\n    at #assembleAndUpdateConfig (C:\\Users\\jarhe\\Documents\\Codex\\2026-10-06\\continue-my-existing-project-room-company\\work\\project-room-package\\project-room-independent\\node_modules\\miniflare\\dist\\src\\index.js:89177:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Mutex.runWith (C:\\Users\\jarhe\\Documents\\Codex\\2026-10-06\\continue-my-existing-project-room-company\\work\\project-room-package\\project-room-independent\\node_modules\\miniflare\\dist\\src\\index.js:58160:48)\n    at async #waitForReady (C:\\Users\\jarhe\\Documents\\Codex\\2026-10-06\\continue-my-existing-project-room-company\\work\\project-room-package\\project-room-independent\\node_modules\\miniflare\\dist\\src\\index.js:89290:5)\n    at async file:///C:/Users/jarhe/Documents/Codex/2026-10-06/continue-my-existing-project-room-company/work/project-room-package/project-room-independent/qa/independent-miniflare.mjs:150:3",
+  "cleanup": "MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above.",
+  "completedAt": "2026-10-07T02:30:29.914Z",
+  "elapsedMs": 12563
+}

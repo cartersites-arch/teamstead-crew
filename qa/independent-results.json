@@ -1,0 +1,304 @@
+{
+  "suite": "Independent pilot: real WebAuthn + actual Worker/request context + SQLite-backed actual D1 photo store",
+  "groups": 30,
+  "passed": 30,
+  "failed": 0,
+  "assertions": 759,
+  "changedDuringRun": [],
+  "results": [
+    {
+      "name": "Bootstrap expiry, inspection and setup-only scope fail closed",
+      "status": "PASS",
+      "assertions": 25,
+      "milliseconds": 32
+    },
+    {
+      "name": "Registration requires correct origin, RP, challenge, ceremony, presence and verification",
+      "status": "PASS",
+      "assertions": 62,
+      "milliseconds": 27
+    },
+    {
+      "name": "Legacy cookies, tampering, expiry and stale viewer headers do not authenticate",
+      "status": "PASS",
+      "assertions": 10,
+      "milliseconds": 6
+    },
+    {
+      "name": "Real discoverable authentication stores verified session state without exposing credentials",
+      "status": "PASS",
+      "assertions": 20,
+      "milliseconds": 7
+    },
+    {
+      "name": "Authentication rejects wrong origin/RP/challenge/signature/UV/userHandle and consumes failed challenges",
+      "status": "PASS",
+      "assertions": 42,
+      "milliseconds": 18
+    },
+    {
+      "name": "Challenges bind browser/purpose, expire server-side and permit one concurrent completion",
+      "status": "PASS",
+      "assertions": 14,
+      "milliseconds": 10
+    },
+    {
+      "name": "Competing setup browsers can register only one initial passkey and share a stable opaque user handle",
+      "status": "PASS",
+      "assertions": 23,
+      "milliseconds": 11
+    },
+    {
+      "name": "Invitation expiry after setup issuance denies registration and setup status",
+      "status": "PASS",
+      "assertions": 10,
+      "milliseconds": 5
+    },
+    {
+      "name": "Reauthentication is account/session-bound and required for security changes",
+      "status": "PASS",
+      "assertions": 27,
+      "milliseconds": 16
+    },
+    {
+      "name": "Backup passkeys can be managed only by their person; the last passkey cannot be removed",
+      "status": "PASS",
+      "assertions": 15,
+      "milliseconds": 6
+    },
+    {
+      "name": "Device revocation is person-scoped and preserves the calling session",
+      "status": "PASS",
+      "assertions": 17,
+      "milliseconds": 10
+    },
+    {
+      "name": "Owner recovery racing login revokes old keys/sessions and cannot restore stale access",
+      "status": "PASS",
+      "assertions": 35,
+      "milliseconds": 16
+    },
+    {
+      "name": "Replacing recovery revokes its pending setup session and registration challenge",
+      "status": "PASS",
+      "assertions": 26,
+      "milliseconds": 13
+    },
+    {
+      "name": "Reset racing initial enrollment derives recovery purpose from committed account state",
+      "status": "PASS",
+      "assertions": 18,
+      "milliseconds": 9
+    },
+    {
+      "name": "Enrollment remains recoverable after a committed response is lost; pre-commit failure grants no access",
+      "status": "PASS",
+      "assertions": 31,
+      "milliseconds": 16
+    },
+    {
+      "name": "A revoked owner session cannot commit an already-started security change",
+      "status": "PASS",
+      "assertions": 9,
+      "milliseconds": 4
+    },
+    {
+      "name": "Private room/DM/search/photo boundaries still hold for verified members",
+      "status": "PASS",
+      "assertions": 14,
+      "milliseconds": 10
+    },
+    {
+      "name": "Message deletion removes photo bytes/metadata, blanks content and is retryable",
+      "status": "PASS",
+      "assertions": 12,
+      "milliseconds": 4
+    },
+    {
+      "name": "Failed D1 photo cleanup remains queued, inaccessible and visible only to its requester or owner",
+      "status": "PASS",
+      "assertions": 20,
+      "milliseconds": 4
+    },
+    {
+      "name": "Delete pre/post-commit transport failures preserve a correct durable cleanup state",
+      "status": "PASS",
+      "assertions": 14,
+      "milliseconds": 7
+    },
+    {
+      "name": "Member removal revokes passkeys, setup grants, sessions and protected Hub access",
+      "status": "PASS",
+      "assertions": 23,
+      "milliseconds": 10
+    },
+    {
+      "name": "Audit and session listings disclose scoped metadata, not tokens, hashes or stored Hub URLs",
+      "status": "PASS",
+      "assertions": 21,
+      "milliseconds": 4
+    },
+    {
+      "name": "AI copy context enforces membership and workspace permission and omits common credential formats",
+      "status": "PASS",
+      "assertions": 17,
+      "milliseconds": 6
+    },
+    {
+      "name": "Worker API navigation, methods and unknown routes stay outside public SPA fallback",
+      "status": "PASS",
+      "assertions": 50,
+      "milliseconds": 2
+    },
+    {
+      "name": "Actual AsyncLocalStorage isolates interleaved cookie identities and scoped photos",
+      "status": "PASS",
+      "assertions": 116,
+      "milliseconds": 29
+    },
+    {
+      "name": "Worker bounds announced and streamed request bodies before parsing; Origin remains mandatory",
+      "status": "PASS",
+      "assertions": 11,
+      "milliseconds": 11
+    },
+    {
+      "name": "D1 store enforces 512 KiB objects and an atomic 64 MiB budget with exact rollback accounting",
+      "status": "PASS",
+      "assertions": 27,
+      "milliseconds": 99
+    },
+    {
+      "name": "D1 photo send retry and pre/post-commit failures preserve message bytes and quota",
+      "status": "PASS",
+      "assertions": 26,
+      "milliseconds": 41
+    },
+    {
+      "name": "A large queued photo cleanup drains across bounded requests below 50 D1 statements",
+      "status": "PASS",
+      "assertions": 17,
+      "milliseconds": 5
+    },
+    {
+      "name": "Actual migration preserves owner/history, removes legacy sessions and queues earlier deleted photos",
+      "status": "PASS",
+      "assertions": 7,
+      "milliseconds": 38
+    }
+  ],
+  "node": "v24.19.0",
+  "sqlite": "3.53.3",
+  "storage": "Actual Worker router/request context, Node SQLite D1 adapter and actual D1 photo store; real WebAuthn verifier; no network",
+  "migrations": [
+    "0000_white_madelyne_pryor.sql",
+    "0001_thick_post.sql",
+    "0002_lively_silver_samurai.sql",
+    "0003_smart_medusa.sql",
+    "0004_hot_iron_man.sql",
+    "0005_wonderful_chameleon.sql",
+    "0006_maintenance_bots.sql",
+    "0007_chat_notifications.sql",
+    "0008_conversation_tools.sql",
+    "0009_private_r2_storage.sql",
+    "0010_private_r2_manuals.sql",
+    "0011_company_workspaces.sql",
+    "0012_company_registry.sql",
+    "0018_product_plans.sql",
+    "0019_company_billing.sql",
+    "0020_billing_policy.sql",
+    "0021_live_billing.sql"
+  ],
+  "packageVersions": {
+    "server": "14.0.3",
+    "browser": "14.0.0"
+  },
+  "metrics": {
+    "sqlExecutions": 2619,
+    "maxBindCount": 19,
+    "batches": 139,
+    "httpCalls": 421,
+    "maxRequestSql": 43,
+    "assetsCalls": 3,
+    "requestSqlOver50": []
+  },
+  "sourceHashes": {
+    "drizzle/0000_white_madelyne_pryor.sql": "7fd7e44a76d271191a71be5b0fc27c3cb73be0e3321b8fc2d28429e633c06333",
+    "drizzle/0001_thick_post.sql": "264ff33c335b055b308edf20305abde8a753d6f7ee16f671d597781f89f9aff7",
+    "drizzle/0002_lively_silver_samurai.sql": "827220613f4afe83a6b2ea803b9d8be94d8c65c5c870a5760182bd4956bb8485",
+    "drizzle/0003_smart_medusa.sql": "41525639ff27039914569bce6d2904f7c41b8f0a51395b70a1b529f62307e2b3",
+    "drizzle/0004_hot_iron_man.sql": "d8c76d99ef61340e6691d7f817b0e9f9d3c3b35820df604f6a3828e3f4381fff",
+    "drizzle/0005_wonderful_chameleon.sql": "b79e4ddea746fd08809c2dd322deb149fbb883f657684574fd12129e94f3adba",
+    "drizzle/0006_maintenance_bots.sql": "ac1703335bf8607ba86088c0d644c9fea227f977edcf318454dea6d3282aeee8",
+    "drizzle/0007_chat_notifications.sql": "e58e574eea283418d1a77b3de6c74af7cf1a073281658600a43784994f35fd53",
+    "drizzle/0008_conversation_tools.sql": "33b9f8d3efd10e68fe9d9f6643e0dc89dd32ba92cf82e5ca354cfdecb0fb26e0",
+    "drizzle/0009_private_r2_storage.sql": "55a5a9f7b44c78180fbc1ca8da162ee8e2b9a034d1f464c70d0864f68aa8ba2e",
+    "drizzle/0010_private_r2_manuals.sql": "88f58740b296c1eec50a44ae5032bda66114a225626b1142ec46cb0d7f04db51",
+    "drizzle/0011_company_workspaces.sql": "2f95e3ab94448e141ed94ebe54d5102e806d961485440cb321b3f7f15ab12ab6",
+    "drizzle/0012_company_registry.sql": "6d8e3b2ece9d117a5339cc2f4e0b3567af483851938a79e23fc56a0829db6762",
+    "drizzle/0018_product_plans.sql": "2a2eff06c34c7c550978cf7f4bc6e8ccbaf8fd1f0bd46fb15128658d6c5326d8",
+    "drizzle/0019_company_billing.sql": "17b30d44aa95b3b86f2909967e8ecfed5e51dfda13ffbcd64a6a3a066e59518e",
+    "drizzle/0020_billing_policy.sql": "7a309d5b63fdc3aacebf833df80e146287121301f68decd637ddd964b06689de",
+    "drizzle/0021_live_billing.sql": "b2cf81fd7e41e7753f820cf3018c5327ed8bf851759e1b2fa1b1369b1c9a1fb9",
+    "package.json": "705f9d104d573455fcf62137c1e47bb49fa0a0ff687cf331ecfa67b0bb829c81",
+    "wrangler.jsonc": "3fb55db666213268bcfa6a86ffd058152dea27596ae5f10bbf35c2cca0160cba",
+    "tsconfig.json": "8917a2bf89ccb224f3b513c7781d5428f2e47ebffb0e91020f348893cb3c52ef",
+    "pnpm-lock.yaml": "ed9a496919ddd4e3b99b9c56cbacf27027be3d83911c408172a63f6fe42aca3a",
+    "package-lock.json": "90a6bc5a16126cbe0deea615a37cdb66f2c23713d8bb98e393e31c8856039b84",
+    "lib\\request-context.ts": "06cb011ac85ff00e007ffe952fc160f2615abed9006c9323db135e9d429f566d",
+    "worker\\index.ts": "d91176e19c9d65b07980cd117e0910a005330467b89cf60ee15d4ac10ae5e337",
+    "lib\\photo-storage.ts": "6bcd8b22d62d348656200541f67c565e2d02935af9c985df6fe6a4bdb2819352",
+    "lib\\app-errors.ts": "171a60179fa1ddd157ed073c921afc43e68999e3e236e7b704242020c0be27dc",
+    "lib\\chat-db.ts": "ee2f4ec554dbe1e56320432ed3ff7dc6dd373d220ccd2dab6843cdf2f7759a96",
+    "lib\\company-context.ts": "e7b28793a8f0c4a9c7143d1f41b30a5c1e2eee631644ea11a8070f8803589fa9",
+    "lib\\r2-storage.ts": "bdf5deb53a3681f0d45e382bd993732e7ecbef0df305b9a006c34c8c9ba765c9",
+    "lib\\company-sql.ts": "2fd69f1a0e5c9db394d09586b645ecd37dc75c6fcb6bc2c5db1509f2bbeb4af1",
+    "lib\\access.ts": "307de4c3caca12298bddafd75d8fe655cc2a9b039ed3321ae61512577ae88c1e",
+    "lib\\hub-billing-attestation.ts": "291ced5191e6219730783b1701d5349bb9e9bf98bdd750415dee9d6d08fd75cf",
+    "app\\api\\roster\\route.ts": "622159b1d5481f6840208ac95c1998d60b2796dd6f1995f40861adf41c71866d",
+    "lib\\company-billing-access.ts": "ae4328902f7cc846f434baf0f366a950f0594564001b8330b9a996d530a6d105",
+    "app\\api\\signup\\route.ts": "cbf2e9bf48312fa490608f06ec74b558354028437645a6fe79da8b6bf085e5eb",
+    "app\\api\\platform\\route.ts": "412dc95535d85e4140128d4cef7546404bc3a1f0e254adf3ac7dccca348eb894",
+    "app\\api\\access\\route.ts": "3d4e5508a6737ad6ceb06e5b85fda684b7ab6cace12ea7d97b821d5b6f1d8e65",
+    "app\\api\\workspaces\\route.ts": "cdf6755eda231faf3f17f73cb644081397885eb7bee4a6dd384744f9b2311eb0",
+    "app\\api\\checkout\\route.ts": "8cfeff8a842544acbb4674e85ef99a1b685c50bd0d14a339d84caec93544cd95",
+    "app\\api\\security\\route.ts": "1360f4e65b8c3341522851477eb92d934b31e32d1c92ad66ab13a921772f32d5",
+    "lib\\workspace-attestation.ts": "343f208703c5bc2a419e42421b1853f490b01200abac6d7cc835a06b99bbc56f",
+    "app\\maintenance\\open\\route.ts": "f346fd9d97fa47cf98f3a1316e4755f81a8d6cb9ba73550153fc83d8dfb44f4c",
+    "app\\api\\stripe-webhook\\route.ts": "11691d1a8f3dcbd948b49e5076fa417d03bad81ba59ab204356c83f0a71b0d07",
+    "lib\\company-products.ts": "8ff9df434607a4c64ea1f70041c9c52c0fa55f10e906733af58d0ce56bea962a",
+    "app\\api\\passkeys\\route.ts": "bd7f1762eb736db26561d01452cc297bd29a4876d6e427957413534a620c2592",
+    "app\\api\\maintenance\\route.ts": "a9f11d14b438a6bac3e6d8a17bddcfbf0c60e69eb388e247a7e25cd6268621d3",
+    "app\\api\\bots\\route.ts": "e65b17055d54db4a6d217a58972e4bb584bb3754ffb70d8a737167364cbd1229",
+    "app\\api\\crew-call\\route.ts": "474a4df4a568c800803db6dc69ab1e4548a10c21eda0803d22ace308582faae5",
+    "app\\api\\chat\\route.ts": "10bb58c49d6706d5434ef6b46569a053be46a3dfbfc49005e86991a932466bc1",
+    "app\\api\\photos\\[id]\\route.ts": "c11507048949c9b09229f69886003865deb0e885c83bf87bf12ffc0c4eea08d0",
+    "app\\api\\work-orders\\route.ts": "3a3c55781fefe82ed896ed023824c9cf2f01ab0fa648713c96b622dba6ea82a5",
+    "lib\\hub-r2-bridge.ts": "123e862b95aad808ec5a6ca0448b7b7c35f4c619698159b60cbedb4ef757207a",
+    "lib\\billing-policy.ts": "4250b6891f0e836e47673df0b24958806597afcadde1d246a1df55163ae020db",
+    "lib\\product-plans.ts": "7a0a53c71e6f2e9c637f79ca59b488b3b78ad0a842aac78febe4b3307bcb941a",
+    "lib\\chat-server.ts": "25f6a5aa7b5c858235b9d4888129fc956056dd949b8f2e3e7cb5faafb8347f72",
+    "lib\\security-events.ts": "f2890207042679526accc5300e715dc4f8d465cab5d8d1288fb8cbfd1013344b",
+    "lib\\r2-bridge-public.ts": "706db205bdbc8f5af41a66328a564ac81caf4aa0488bcbd5936063c692553efa",
+    "lib\\passkeys.ts": "51c68ba0c9d4c1dd9a62b094917524ccc1d060badf5b4346b91ba544270089e9",
+    "lib\\maintenance-links.ts": "0ec8e047b30037a0f8eb067fa66cf735f14889e27ab58eef04dc1ba16247476c",
+    "lib\\stripe-billing.ts": "641f19b74d0de1c7cfe5435fc70abf7f70af12ae99a94ac2f20b3a3d89911307",
+    "lib\\company-delete.ts": "16f2c3f50cb59a8546748d2eedbfe7f7bda9b926f3e89d3a370e78613a351457",
+    "lib\\file-deletions.ts": "e31f2acbfaa2d1caa5c17631e9124fb7a7c57c03eb8b046804627ddead18f27a",
+    "lib\\maintenance-bots.ts": "d00947ad5422d4878ff137d615031841ff92500ed8fa748fb760bbe6e9ce057b",
+    "lib\\company-members.ts": "feff81625a6c09f37d619eccd2d596856804654f8c67fe3126e5ca68d6162c58",
+    "lib\\company-template.ts": "3d4c15d713cf3e4e721e41fca3469845b1025739f19d3bbbbb39bab755d9572e",
+    "lib\\stripe-checkout.ts": "b55d0f85d7cb2b0d418156d92ea96739cad60e4f1f01ee7bdf879e64ced47a1e",
+    "lib\\ai-privacy.ts": "d828d3a463d84419ea80aeceac316d7d7b23f1b233b3f3835eb6d53cce0bb270",
+    "lib\\chat-notifications.ts": "5774a65b5287b991a7f35c4228acb470ef1d7f7adad9ac2310cf9171ccb115ea",
+    "lib\\chat-notification-rules.ts": "607e1f33672b973b715d0662c4fe22a7c5332f64c4846d86fce6130d6989549f",
+    "lib\\web-push-request.ts": "5efb3521d7aa9786fa7765797868fa14bf3ef543eecbffeed222872ae0e369e5",
+    "lib\\maintenance-bot-rules.ts": "b659275f35bf8a488a4b548ce3dd04bc47b6ba8b1bbf36539d7165eee69b7520",
+    "lib\\push-crypto-bridge.ts": "84c950eaac03bc9ecce308b01f66d930b66d08a373891c8814b50f565100d721"
+  },
+  "limitations": [
+    "Local Node/SQLite uses a D1 adapter and an ASSETS fixture; it is not the deployed Cloudflare platform.",
+    "Real cryptographic passkey verification uses a software authenticator, not a physical phone or browser enrollment.",
+    "These checks do not establish compliance with the Free Worker 10 ms CPU budget, live rate limits, real network behavior, or a comprehensive security audit."
+  ]
+}

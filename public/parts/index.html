@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#12354e">
+  <meta name="description" content="Search internet prices, save store locations, and build a parts shopping list.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <title>Teamstead Parts Finder</title>
+  <link rel="manifest" href="/parts/manifest.webmanifest">
+  <link rel="icon" href="/parts/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/parts/styles.css?v=teamstead-1">
+  <link rel="stylesheet" href="/teamstead-apps.css">
+</head>
+<body>
+  <svg class="symbol-sprite" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></symbol>
+    <symbol id="i-results" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="m7 12 3 3 7-7"></path></symbol>
+    <symbol id="i-suppliers" viewBox="0 0 24 24"><path d="M3 10h18M5 10v9h14v-9M7 10l1-5h8l1 5"></path><path d="M9 19v-5h6v5"></path></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"></path><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"></path></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></symbol>
+    <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5-5L12 3.6 9.6 6 7.3 3.7a4 4 0 0 0 5 5L20 16.4 16.4 20l-7.7-7.7a4 4 0 0 1-5-5L6 9.6 8.4 7.2 6.1 4.9"></path></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Parts Finder navigation">
+      <a class="brand" href="#search" data-nav="search" aria-label="Parts Finder home">
+        <span class="brand-mark"><img id="company-logo" alt="" hidden><svg id="company-logo-fallback"><use href="#i-tool"></use></svg></span>
+        <span><strong>Parts Finder</strong><small id="company-brand-name">TEAMSTEAD CREW</small></span>
+      </a>
+
+      <nav class="side-nav">
+        <button class="nav-button is-active" type="button" data-view="search" aria-label="Step 1: Find a part" title="Find a part" aria-current="page">
+          <svg><use href="#i-search"></use></svg><span class="nav-copy"><strong>1. Find</strong><small>Describe the part</small></span>
+        </button>
+        <button class="nav-button" type="button" data-view="results" aria-label="Step 2: View internet prices" title="Internet prices">
+          <svg><use href="#i-results"></use></svg><span class="nav-copy"><strong>2. Prices</strong><small>Search internet prices</small></span>
+        </button>
+        <button class="nav-button" type="button" data-view="suppliers" aria-label="Step 3: View nearby stores" title="Nearby stores">
+          <svg><use href="#i-suppliers"></use></svg><span class="nav-copy"><strong>3. Stores</strong><small>Call or get directions</small></span>
+        </button>
+        <button class="nav-button" type="button" data-view="shopping" aria-label="Step 4: Open shopping list" title="Shopping list">
+          <svg><use href="#i-cart"></use></svg><span class="nav-copy"><strong>4. Shopping List</strong><small>Prices and locations</small></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="live-dot"></span>
+        <div><strong id="company-workspace-name">Teamstead workspace</strong><small>Verify before buying</small></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PARTS FINDER</p>
+          <h1 id="view-title">Find a part</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="pilot-badge" id="company-badge">Teamstead Crew</span>
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">
+            <svg><use href="#i-sun"></use></svg>
+          </button>
+          <div class="avatar" id="viewer-avatar" aria-label="Signed-in employee">?</div>
+        </div>
+      </header>
+
+      <section class="view is-active" id="view-search" data-view-panel="search">
+        <div class="search-hero simple-hero">
+          <div>
+            <span class="section-kicker"><svg><use href="#i-spark"></use></svg> Parts Finder</span>
+            <h2>What part are you looking for?</h2>
+            <p>Enter a part name or number. We’ll find live internet prices and automatically save the best current total to your shopping list.</p>
+          </div>
+        </div>
+
+        <form id="search-form" class="request-card simple-search-card">
+          <div class="card-heading">
+            <div>
+              <span class="step-number">START HERE</span>
+              <div><h3>Type a name or number, then press Search</h3><p>No account or special knowledge needed.</p></div>
+            </div>
+          </div>
+
+          <div class="easy-step quick-start">
+            <div class="form-grid single-input-grid">
+              <label class="field field-wide">
+                <span>What are you looking for?</span>
+                <div class="input-with-icon"><svg><use href="#i-search"></use></svg><input id="part-query" name="partQuery" autocomplete="off" aria-describedby="query-help" placeholder="Type a name or number"></div>
+                <small class="field-help" id="query-help">Example: red hose, 6205 bearing, or 52014734AB</small>
+              </label>
+            </div>
+            <div class="location-actions"><button class="secondary-button" type="button" id="use-location"><svg><use href="#i-pin"></use></svg><span>Use my current location</span></button><span id="location-status" role="status" aria-live="polite">Location helps find nearby stores.</span></div>
+          </div>
+
+          <details class="more-options simple-more">
+            <summary>Add vehicle or ZIP details <small>(optional)</small></summary>
+            <div class="form-grid easy-fields">
+              <label class="field"><span>Type of machine</span><select id="equipment-type"><option value="">Not specified</option><option>Truck / vehicle</option><option>Ride / attraction</option><option>Trailer</option><option>Generator</option><option>Industrial equipment</option><option>Something else</option></select></label>
+              <label class="field"><span>Year</span><input id="equipment-year" inputmode="numeric" maxlength="4" placeholder="Example: 2013"></label>
+              <label class="field"><span>Brand</span><input id="equipment-make" placeholder="Example: Ram"></label>
+              <label class="field"><span>Model or engine</span><input id="equipment-model" placeholder="Example: 3500"></label>
+              <label class="field"><span>ZIP code</span><div class="input-with-icon"><svg><use href="#i-pin"></use></svg><input id="zip-code" inputmode="numeric" maxlength="5" placeholder="Example: 91331"></div></label>
+              <label class="field"><span>How far away?</span><select id="radius"><option>25 miles</option><option>50 miles</option><option>100 miles</option><option>Shipping is okay</option></select></label>
+              <label class="field"><span>When?</span><select id="needed"><option>Today</option><option>Within 2 days</option><option>This week</option><option>Planning ahead</option></select></label>
+              <label class="field"><span>Kind of part</span><select id="category"><option>Not sure</option><option>Automotive / truck</option><option>Belts</option><option>Bearings</option><option>Electrical</option><option>Hydraulics</option></select></label>
+            </div>
+          </details>
+
+          <div class="quick-examples" aria-label="Example searches"><span>Examples:</span><button type="button" data-example="Intercooler hose">Intercooler hose</button><button type="button" data-example="6205 bearing">6205 bearing</button><button type="button" data-example="7-pin trailer plug">Trailer plug</button></div>
+
+          <details class="privacy-notice"><summary>Privacy and safety</summary><p>Your latest search, saved prices, shopping list, and store details stay in this browser. Searches are sent through this site’s protected server to its search provider. GPS coordinates are used only for the current nearby-store request and are not saved. Always confirm fit, seller, price, shipping, and stock before buying.</p></details>
+
+          <div class="form-footer simple-footer">
+            <button class="primary-button find-button" type="submit"><span>Find Internet Prices</span><svg><use href="#i-arrow"></use></svg></button>
+          </div>
+        </form>
+
+        <section id="search-progress" class="search-progress" hidden aria-live="polite">
+          <div class="progress-orbit"><svg><use href="#i-search"></use></svg></div>
+            <div><p class="eyebrow">FINDING INTERNET PRICES</p><h3>Looking up live prices…</h3><p id="progress-label">Reading what you entered</p></div>
+          <ol>
+            <li class="is-running">Part</li><li>Prices</li><li>Compare</li>
+          </ol>
+        </section>
+      </section>
+
+      <section class="view" id="view-results" data-view-panel="results">
+        <div class="results-header">
+          <div><p class="eyebrow">INTERNET PRICES</p><h2 id="results-title">Search for a part first</h2><p id="results-summary"><strong>Your search</strong> · current prices appear here</p></div>
+          <div class="view-actions"><button class="secondary-button" type="button" data-go="search">Back to Find</button><button class="primary-button" type="button" data-go="suppliers">Next: Nearby Stores <svg><use href="#i-arrow"></use></svg></button></div>
+        </div>
+
+        <div class="trust-banner">
+          <svg><use href="#i-check"></use></svg>
+          <div><strong id="match-title">Live internet prices</strong><span id="match-copy">The best current total will be saved to your shopping list automatically.</span></div>
+          <span class="confidence" id="match-confidence">Free test service</span>
+        </div>
+
+        <div class="result-layout">
+          <div class="result-stack" id="result-stack" aria-live="polite"></div>
+          <aside class="fitment-panel">
+            <p class="eyebrow">SEARCH DETAILS</p>
+            <h3>Use the exact details you know.</h3>
+            <p>More accurate names, numbers, and machine details produce better searches. A store or manufacturer must confirm fit.</p>
+            <dl><div><dt>Machine / vehicle</dt><dd id="fitment-vehicle">Not specified</dd></div><div><dt>Model / engine</dt><dd id="fitment-engine">Not specified</dd></div><div><dt>Requested part</dt><dd id="fitment-part">Search for a part</dd></div></dl>
+            <button class="secondary-button full" type="button" data-go="search">Edit these details</button>
+          </aside>
+        </div>
+
+        <section class="price-board" aria-labelledby="price-board-title">
+          <div class="price-board-heading">
+            <div><p class="eyebrow">OPTIONAL</p><h3 id="price-board-title">Add a price yourself</h3><p>If a price is missing, type it here. Saved prices and shopping-list items stay on this device.</p></div>
+            <div class="best-price" id="best-price"><span>Lowest total</span><strong>—</strong><small>Add a price below</small></div>
+          </div>
+
+          <form class="price-form" id="price-form">
+            <label class="field"><span>Seller or store</span><input id="quote-seller" required maxlength="60" placeholder="Example: NAPA"></label>
+            <label class="field"><span>Part price</span><div class="money-input"><span>$</span><input id="quote-price" required inputmode="decimal" min="0" step="0.01" type="number" placeholder="0.00"></div></label>
+            <label class="field"><span>Shipping <small>(optional)</small></span><div class="money-input"><span>$</span><input id="quote-shipping" inputmode="decimal" min="0" step="0.01" type="number" placeholder="0.00"></div></label>
+            <label class="field"><span>Store location <small>(optional)</small></span><input id="quote-location" maxlength="120" placeholder="Address, city, or ZIP"></label>
+            <label class="field price-link-field"><span>Listing link <small>(optional)</small></span><input id="quote-link" type="url" inputmode="url" placeholder="https://seller.com/part"></label>
+            <button class="primary-button" type="submit">Add This Price</button>
+          </form>
+
+          <div class="price-list" id="price-list"><p class="empty-prices">No prices saved for this part yet.</p></div>
+          <p class="price-safety">Use Check Online Stock for seller-reported availability. Prices and stock can change, so always verify the listing, fit, seller, tax, shipping, and availability before buying. Each stock check uses the free test service’s limited monthly searches.</p>
+        </section>
+      </section>
+
+      <section class="view" id="view-suppliers" data-view-panel="suppliers">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">STORES</p><h2>Nearby parts stores</h2><p>Use your device location or ZIP code to see real stores, phone numbers, and directions.</p></div>
+          <span class="pilot-badge">Saved with your list</span>
+        </div>
+
+        <article class="store-finder-card">
+          <span class="store-finder-icon"><svg><use href="#i-pin"></use></svg></span>
+          <div><p class="eyebrow">YOUR SEARCH AREA</p><h3 id="store-area-title">Choose your location on the Find page</h3><p id="store-area-copy">We’ll place nearby stores on this page and in your shopping list. Call before driving to confirm that your exact part is in stock.</p></div>
+          <div class="store-finder-actions"><button class="primary-button" type="button" id="find-nearby-stores"><span>Find Nearby Stores</span><svg><use href="#i-arrow"></use></svg></button><a class="secondary-button" id="nearby-stores-link" href="https://www.google.com/maps/search/?api=1&amp;query=auto%20parts%20stores" target="_blank" rel="noopener">Open Maps</a><button class="secondary-button" type="button" data-go="results">Back to Prices</button><button class="secondary-button" type="button" data-go="shopping">Shopping List</button><button class="secondary-button" type="button" id="clear-search">Start a New Search</button></div>
+        </article>
+
+        <section class="nearby-stores-panel" aria-labelledby="nearby-stores-title">
+          <div class="nearby-stores-heading"><div><p class="eyebrow">NEARBY STORES</p><h3 id="nearby-stores-title">Stores for this search</h3><p id="nearby-store-status" role="status" aria-live="polite">Use your current location or enter a ZIP code, then press Find Nearby Stores.</p></div></div>
+          <div class="nearby-store-list" id="nearby-store-list"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-shopping" data-view-panel="shopping">
+        <div class="dashboard-intro">
+          <div><p class="eyebrow">SAVED ON THIS DEVICE</p><h2>Your shopping list</h2><p>Keep the parts, prices, and store locations you want to use later.</p></div>
+          <div class="view-actions"><button class="secondary-button" type="button" id="download-shopping-list">Download backup</button><button class="primary-button" type="button" data-go="search">Add Another Part</button></div>
+        </div>
+
+        <div class="shopping-stats" aria-label="Shopping list summary">
+          <article><span>Still to buy</span><strong id="shopping-open-count">0</strong><small>items</small></article>
+          <article><span>Stores</span><strong id="shopping-store-count">0</strong><small>locations</small></article>
+          <article><span>Estimated total</span><strong id="shopping-total">$0.00</strong><small>before tax</small></article>
+          <article><span>Bought</span><strong id="shopping-bought-count">0</strong><small>items checked off</small></article>
+        </div>
+
+        <div class="shopping-list" id="shopping-list">
+          <article class="shopping-empty"><svg><use href="#i-cart"></use></svg><h3>Your list is empty</h3><p>Add a saved price from the Prices page.</p><button class="primary-button" type="button" data-go="search">Find a Part</button></article>
+        </div>
+
+        <section class="nearby-stores-panel shopping-nearby-stores" aria-labelledby="shopping-nearby-title">
+          <div class="nearby-stores-heading"><div><p class="eyebrow">STOPS FOR YOUR TRIP</p><h3 id="shopping-nearby-title">Nearby parts stores</h3><p id="shopping-store-status">Find stores once and they stay with this list on this device.</p></div><button class="secondary-button" type="button" id="refresh-shopping-stores">Find Nearby Stores</button></div>
+          <div class="nearby-store-list" id="shopping-nearby-store-list"></div>
+        </section>
+
+        <p class="shopping-privacy">This list and nearby store details are saved only in this browser. GPS coordinates are never stored. Download a backup before clearing browser data or changing devices.</p>
+      </section>
+
+      <footer class="site-footer">
+        <div><strong>Teamstead Parts Finder</strong><span>Price and store comparison · Not a retailer or manufacturer</span></div>
+        <button class="text-button" type="button" id="open-about">About, privacy &amp; support</button>
+      </footer>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button class="is-active" type="button" data-view="search" aria-current="page"><svg><use href="#i-search"></use></svg><span>1 Find</span></button>
+      <button type="button" data-view="results"><svg><use href="#i-results"></use></svg><span>2 Prices</span></button>
+      <button type="button" data-view="suppliers"><svg><use href="#i-suppliers"></use></svg><span>3 Stores</span></button>
+      <button type="button" data-view="shopping"><svg><use href="#i-cart"></use></svg><span>4 List</span></button>
+    </nav>
+  </div>
+
+  <dialog class="request-dialog about-dialog" id="about-dialog" aria-labelledby="about-title">
+    <button class="dialog-close" type="button" id="close-about" aria-label="Close about and privacy information"><svg><use href="#i-close"></use></svg></button>
+    <p class="eyebrow">TEAMSTEAD CREW</p>
+    <h2 id="about-title">About Parts Finder</h2>
+    <p class="dialog-subtitle">Parts Finder is included in your company’s Teamstead plan. It is not a retailer, manufacturer, marketplace, or inventory system.</p>
+    <div class="about-sections">
+      <section><h3>How results work</h3><p>Internet prices and seller-reported online stock come from a protected search service. Nearby-store details come from map search results. Results can be incomplete, delayed, or incorrect.</p></section>
+      <section><h3>Before buying</h3><p>Confirm the part number, dimensions, fit, seller, final price, shipping, returns, and availability with the seller or manufacturer. Local-store inventory is not guaranteed.</p></section>
+      <section><h3>Privacy</h3><p>Your shopping list, saved prices, and store details stay in this browser. Searches are sent through the site server to the search provider. GPS coordinates are used for a nearby-store request and are not saved in the list.</p></section>
+      <section><h3>Support</h3><p>Ask your company owner for Teamstead support or help with account access. Always contact the seller directly about an order, return, price, or stock question.</p></section>
+    </div>
+    <button class="primary-button full" type="button" id="about-done">I understand</button>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/teamstead-apps.js" defer></script>
+  <script type="module" src="/parts/app.js?v=teamstead-1"></script>
+</body>
+</html>

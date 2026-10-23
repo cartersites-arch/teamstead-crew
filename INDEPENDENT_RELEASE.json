@@ -1,0 +1,41 @@
+{
+  "name": "Project Room independent free pilot",
+  "version": "1.0.0",
+  "deploymentStatus": "not_published_to_company_account",
+  "sourceBasedOn": "372de9793088c087331a71641228a5d3eec7e024",
+  "runtimeServices": [
+    "Cloudflare Workers",
+    "Cloudflare D1"
+  ],
+  "chatgptRuntimeRequired": false,
+  "r2Required": false,
+  "paidAiApiConfigured": false,
+  "photoLimits": {
+    "storedBytesPerPhoto": 524288,
+    "workspacePhotoBytes": 67108864,
+    "maxPhotosPerMessage": 3,
+    "maxOriginalInputBytes": 5242880
+  },
+  "pollingSeconds": 15,
+  "verification": {
+    "serverAndStorageGroupsPassed": 36,
+    "serverAndStorageAssertions": 821,
+    "clientChecksPassed": 33,
+    "productionFreeCpuVerified": false,
+    "physicalPhoneVerified": false,
+    "liveDataMigrated": false
+  },
+  "remaining": [
+    "Confirm and connect company Cloudflare account on its Free plan",
+    "Authorize transmission of the private app for deployment",
+    "Deploy and verify the real hostname before passkey enrollment",
+    "Move or initialize actual company accounts/data deliberately",
+    "Check Jerry and Derek on real devices and inspect free-plan usage"
+  ],
+  "buildFiles": {
+    "dist/client/index.html": "34580085ede723bee64247da35dbb42d365b34c5a1497ddf5d1ea56017ffb036",
+    "dist/worker/index.js": "3991c8c443d8519e7f63952d057342e97aa939cbc02fef57f0a8483f878849aa",
+    "pnpm-lock.yaml": "ed9a496919ddd4e3b99b9c56cbacf27027be3d83911c408172a63f6fe42aca3a",
+    "package.json": "121e74adafbdffe127548db5e32814c97275b37af0b399ca496578f56e4b8069"
+  }
+}

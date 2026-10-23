@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "suite": "independent-deploy-worker-identity-guard",
+  "checkedAt": "2026-10-06T20:47:51.516Z",
+  "status": "passed",
+  "command": "node qa/independent-deploy-guard-checks.mjs",
+  "networkUsed": false,
+  "cloudflareCommandsRun": false,
+  "checks": [
+    {
+      "name": "empty_deployment_array_still_means_worker_exists",
+      "status": "passed"
+    },
+    {
+      "name": "nonempty_deployment_array_means_worker_exists",
+      "status": "passed"
+    },
+    {
+      "name": "exact_worker_endpoint_and_10007_means_absent",
+      "status": "passed"
+    },
+    {
+      "name": "wrong_endpoint_10007_fails_closed",
+      "status": "passed"
+    },
+    {
+      "name": "authorization_failure_fails_closed",
+      "status": "passed"
+    },
+    {
+      "name": "spawn_error_fails_closed_even_with_not_found_text",
+      "status": "passed"
+    },
+    {
+      "name": "missing_exit_status_fails_closed",
+      "status": "passed"
+    },
+    {
+      "name": "malformed_success_json_fails_closed",
+      "status": "passed"
+    },
+    {
+      "name": "nonarray_success_json_fails_closed",
+      "status": "passed"
+    },
+    {
+      "name": "existing_worker_without_receipt_is_refused",
+      "status": "passed"
+    },
+    {
+      "name": "missing_worker_with_prior_receipt_is_refused",
+      "status": "passed"
+    },
+    {
+      "name": "new_worker_without_receipt_can_pass_identity_gate",
+      "status": "passed"
+    },
+    {
+      "name": "existing_worker_with_receipt_can_pass_identity_gate",
+      "status": "passed"
+    }
+  ],
+  "sourceHashes": {
+    "scripts/deploy.mjs": "5b914a983161da33cb7578fbbcd92c577a4f98f9294da82c143b50283cd42db3",
+    "qa/independent-deploy-guard-checks.mjs": "7423aaf54c4e6ec0ab8599ed53a8f960a91c7c66573f6d0679e1b2b1d66fc60c"
+  },
+  "limitations": [
+    "Tests only the extracted Worker existence function and its first-deployment/receipt gate with mocked child-process results.",
+    "Does not execute the deployment helper, validate live CLI/API output, or test remote account, secrets, migration, billing or deployment behavior."
+  ]
+}
