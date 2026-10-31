@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-31T00:16:50.452Z",
+  "branch": "codex/recommended-monthly-pricing",
+  "baseHead": "e3318b00ba5a70477c5ad5c3f7849097774412ae",
+  "worker": {
+    "exact": true,
+    "sha256": "4557353758c7d9f3392072a5a8464eb49085011caf0a18d346638c2461a2213c",
+    "bytes": 902593
+  },
+  "client": {
+    "exact": true,
+    "sha256": "45f4679ae84483c91ea281117ae21788e9fc867b61306ba8a7399410853925b2",
+    "bytes": 614512
+  },
+  "typescript": true,
+  "workerBuild": true,
+  "clientBuild": true,
+  "expandedMockedPricingChecks": 489,
+  "preservedBaselineSuiteChecks": 64,
+  "realNetwork": false,
+  "reactReview": {
+    "files": [
+      "app/access-gate.tsx",
+      "app/billing-page.tsx",
+      "app/chat-app.tsx",
+      "app/home-panel.tsx",
+      "app/public-signup.tsx"
+    ],
+    "newHooks": false,
+    "newDependencies": false,
+    "roleControlsMatchServer": true,
+    "newAccessibilityRegression": false,
+    "featureRefactor": false
+  },
+  "preservedRemoteOnly": true,
+  "productPlanMatchesPr": true,
+  "noRemoteWrites": true,
+  "portableRunner": "node qa/pricing-production.mjs",
+  "sourceCssRebuild": "Generated CSS differs from historical published CSS; exact deployed assets preserved in release archives."
+}

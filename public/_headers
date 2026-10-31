@@ -3,6 +3,8 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   X-Frame-Options: DENY
+  X-Robots-Tag: noindex, nofollow
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
   Permissions-Policy: camera=(self), microphone=(self), display-capture=(self), geolocation=()
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; media-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'none'; object-src 'none'
 
@@ -11,6 +13,9 @@
 
 /index.html
   Cache-Control: no-store
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /sw.js
   Cache-Control: no-cache

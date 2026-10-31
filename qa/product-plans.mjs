@@ -37,6 +37,8 @@ try{
  if(!hasHub){r=await h.request(person,'maintenance',{query:{company:co}});eq(r.status,403);r=await h.request(person,'bots',{query:{company:co}});eq(r.status,403);r=await h.request(person,'workspaces',{method:'POST',query:{company:co},body:{action:'assets',company:co}});eq(r.status,403);}
  if(!hasChat){r=await h.request(person,'chat',{query:{company:co,action:'messages',roomId:'room-general'}});eq(r.status,403);r=await h.request(person,'chat',{method:'POST',query:{company:co},body:{action:'create_room',name:'Bypass'}});eq(r.status,403);}
  const before=remoteCalls.length;r=await h.request(person,'access',{method:'POST',query:{company:co},body:{action:'create_member',combined:true,name:'Employee',hubRole:'shop',requestKey:crypto.randomUUID()}});eq(r.status,201);eq((await r.json()).maintenanceConnected,hasHub);eq(remoteCalls.length-before,hasHub?1:0);
+ for(let i=0;i<8;i++)h.run(`INSERT INTO ${co}_people(id,email,name,role,active,joined_at,auth_version) VALUES(?,?,?,?,1,?,1)`,`capacity-${plan}-${i}`,'',`Capacity ${i}`,'member',now);
+ eq(h.count(`${co}_people`,'active=1'),10);const callsAtCapacity=remoteCalls.length;r=await h.request(person,'access',{method:'POST',query:{company:co},body:{action:'create_member',combined:true,name:'Over limit',hubRole:'employee',requestKey:crypto.randomUUID()}});eq(r.status,409);eq(h.count(`${co}_people`,'active=1'),10);eq(remoteCalls.length,callsAtCapacity);
  }
  eq(h.metrics.requestSqlOver50.length,0);console.log(JSON.stringify({passed:true,checks,maxRequestSQL:h.metrics.maxRequestSql,scope:'Public signup, resumable creation, company isolation, combined invitation, retry and revocation',realNetwork:false}));
 }finally{h.close();}

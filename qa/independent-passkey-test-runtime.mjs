@@ -16,7 +16,7 @@ export const hash = value => createHash('sha256').update(value).digest('hex');
 export const randomToken = () => randomBytes(32).toString('base64url');
 let bundleSequence = 0;
 
-export async function createHarness({ site = SITE, scratch = SCRATCH, origin = 'https://project-room.test', environment = {}, beforeMigration, routeFiles = {}, sourceOverrides = {} } = {}) {
+export async function createHarness({ site = SITE, scratch = SCRATCH, origin = 'https://teamstead-crew.pages.dev', environment = {}, beforeMigration, routeFiles = {}, sourceOverrides = {} } = {}) {
   const require = createRequire(path.join(site, 'package.json'));
   const { build } = await import(pathToFileURL(require.resolve('esbuild')).href);
   const sourceHashes = {};

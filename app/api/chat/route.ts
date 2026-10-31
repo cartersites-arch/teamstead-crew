@@ -120,6 +120,7 @@ export async function POST(request:Request) {
       const name=required(data.name,60);await database.prepare('UPDATE workspace SET name = ? WHERE id = ?').bind(name,'main').run();return response({ok:true});
     }
     if(action==='create_channel') {
+      if(!['owner','admin'].includes(me.role))fail(403,'Only an owner or manager can create channels.');
       const name=required(data.name,45).toLowerCase().replace(/\s+/g,'-'); if(!/^[a-z0-9][a-z0-9_-]*$/.test(name))fail(400,'Use letters, numbers, hyphens, or underscores for the channel name.');
       const description=str(data.description||'',250),visibility=data.visibility==='shared'?'shared':'private',id=crypto.randomUUID(),verified=await requireRecent(),gate=securityGate(verified,'channel_created',me.id);
       const selected=await selectedPeople(data.memberIds,me.id);
@@ -130,7 +131,7 @@ export async function POST(request:Request) {
     }
     if(action==='update_channel') {
       const roomId=required(data.roomId),room=await roomAccess(roomId,me.id);
-      if(room.kind!=='channel'||(me.role!=='owner'&&room.created_by!==me.id))fail(403,'Only the channel creator or workspace owner can edit it.');
+      if(room.kind!=='channel'||!['owner','admin'].includes(me.role))fail(403,'Only an owner or manager can edit channels.');
       const name=required(data.name,45).toLowerCase().replace(/\s+/g,'-');if(!/^[a-z0-9][a-z0-9_-]*$/.test(name))fail(400,'Use letters, numbers, hyphens, or underscores for the channel name.');
       const description=str(data.description||'',250),visibility=data.visibility==='shared'?'shared':'private', selected=await selectedPeople(data.memberIds,me.id);
       // Keep the caller in the channel; choose the entire audience explicitly for a private channel.
