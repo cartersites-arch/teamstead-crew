@@ -27,10 +27,19 @@ try{
  eq((await deliver('evt_invalid',stamp,'wrong')).status,400);eq((await deliver('evt_oldsignature',stamp,'whsec_fake',stamp-600)).status,400);
  eq((await deliver('evt_success')).status,200);eq(h.row('SELECT status FROM company_billing WHERE company_id=?',co).status,'active');eq(h.count('stripe_billing_events'),1);
  const count=calls.length;eq((await deliver('evt_success')).status,200);eq(calls.length,count);eq((await checkout()).status,409);
+ // Rotating a checkout price must not invalidate the previous subscription price.
+ h.env['STRIPE_PRICE_'+plan.toUpperCase()+'_MONTH']='price_revised';
+ h.env['STRIPE_PRICE_'+plan.toUpperCase()+'_MONTH_LEGACY']='price_month';
+ eq((await deliver('evt_legacyprice',stamp+1)).status,200);
+ subscription.items.data[0].price.id='price_unknown';
+ eq((await deliver('evt_unknownprice',stamp+2)).status,409);
+ subscription.items.data[0].price.id='price_revised';
+ eq((await deliver('evt_revisedprice',stamp+3)).status,200);
+ subscription.items.data[0].price.id='price_month';
  subscription.status='past_due';eq((await deliver('evt_failed',stamp+10)).status,200);eq(h.row('SELECT status FROM company_billing WHERE company_id=?',co).status,'past_due');
  eq(h.row('SELECT payment_failed_at FROM company_billing WHERE company_id=?',co).payment_failed_at,(stamp+10)*1000);
  subscription.status='active';eq((await deliver('evt_stale',stamp+5)).status,200);eq(h.row('SELECT status FROM company_billing WHERE company_id=?',co).status,'past_due');
- subscription.metadata.attempt='other';eq((await deliver('evt_unrelated',stamp+20)).status,200);eq(h.count('stripe_billing_events'),3);subscription.metadata.attempt=attempt;
+ subscription.metadata.attempt='other';eq((await deliver('evt_unrelated',stamp+20)).status,200);eq(h.count('stripe_billing_events'),5);subscription.metadata.attempt=attempt;
  subscription.items.data[0].quantity=2;eq((await deliver('evt_quantity',stamp+20)).status,409);subscription.items.data[0].quantity=1;
  subscription.status='active';eq((await deliver('evt_recovered',stamp+25)).status,200);eq(h.row('SELECT payment_failed_at FROM company_billing WHERE company_id=?',co).payment_failed_at,null);
  subscription.status='canceled';eq((await deliver('evt_cancel',stamp+30)).status,200);eq(h.row('SELECT status FROM company_billing WHERE company_id=?',co).status,'canceled');
