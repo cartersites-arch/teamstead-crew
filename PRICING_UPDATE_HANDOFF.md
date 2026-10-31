@@ -8,7 +8,7 @@ Cloudflare account 0e91333c6994f692c3cb0e2d0e0efa02 (Teamstead Software):
 - crew-maintenance serves teamsteadcrew.com; canonical deployment inspected: 46a3488f-f416-4c17-9d0d-7e91b6a0833e.
 - teamstead-crew serves the app and checkout API; canonical deployment inspected: 5653308c-cc23-4160-ae4f-fc8522b1ae1c.
 
-Both projects use direct uploads with no connected Git source. This repository does not reproduce current production: public /pricing/ and /checkout/ are absent here, and source specifies a 14-day trial while the live public site specifies 30 days. The latest deployment ZIP/source has not been located. Do not deploy this repository over production wholesale. No production Cloudflare settings or deployments were changed.
+Both projects use direct uploads with no connected Git source. This repository does not reproduce current production: public /pricing/ and /checkout/ are absent here, and source specifies a 14-day trial while the live public site specifies 30 days. The current public-site deployment file manifest was recovered from the Cloudflare deployment API on October 31. The live backend source/bundle has not been recovered; Workers script/service download attempts returned not-found for the Pages-generated worker. Connected Google Drive searches did not find a Teamstead source archive. The latest backend deployment ZIP/source has not been located. Do not deploy this repository over production wholesale. No production Cloudflare settings or deployments were changed.
 
 ## Safe rollout after recovering current source
 
@@ -26,6 +26,6 @@ Some Stripe product descriptions specify 15 employees while the live public site
 
 TypeScript check, client build and worker build passed in the workspace before it became unavailable. Authenticated checkout and signed webhook tests passed for each changed plan (64 checks each, 192 total), including acceptance of old and new prices and rejection of unknown prices. External Stripe calls were mocked; no live subscriptions were created. The committed code matches those tested changes.
 
-Updated copies of the three live public files were checked locally in Chromium: all seven plan summaries and signup destinations, interactive selection and unchanged 30-day disclosure passed. Those temporary copies could not be uploaded after the workspace became unavailable; the exact deployment edits are described above.
+Updated copies of the three live public files were checked locally in Chromium: all seven plan summaries and signup destinations, interactive selection and unchanged 30-day disclosure passed. The workspace recovered on October 31. All three checked replacement files are now preserved in release-patches/public-site/ on this branch.
 
 Tax behaviour is preserved. Registration and collection require separate verification before claiming taxes are configured.
