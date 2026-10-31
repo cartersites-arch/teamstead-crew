@@ -26,6 +26,6 @@ export async function verifyStripeSignature(body:string,header:string|null,secre
   return false;
 }
 export function configuredPrice(priceId:string){
-  for(const plan of PRODUCT_PLANS)for(const interval of ['month','year'] as const){const key=`STRIPE_PRICE_${plan.toUpperCase()}_${interval.toUpperCase()}` as keyof Cloudflare.Env;if(env[key]===priceId)return {plan,interval};}
+  for(const plan of PRODUCT_PLANS)for(const interval of ['month','year'] as const){const key=`STRIPE_PRICE_${plan.toUpperCase()}_${interval.toUpperCase()}` as keyof Cloudflare.Env;const legacyKey=`${key}_LEGACY` as keyof Cloudflare.Env;if(env[key]===priceId||env[legacyKey]===priceId)return {plan,interval};}
   return null;
 }
