@@ -1,0 +1,26 @@
+{
+  "STRIPE_PRICE_CHAT_PARTS_MONTH": {
+    "type": "plain_text",
+    "value": "price_1UWPdyF4XZKyCDNw40TlAMR8"
+  },
+  "STRIPE_PRICE_HUB_PARTS_MONTH": {
+    "type": "plain_text",
+    "value": "price_1UWPe3F4XZKyCDNwhCrV364H"
+  },
+  "STRIPE_PRICE_COMPLETE_MONTH": {
+    "type": "plain_text",
+    "value": "price_1UWPe8F4XZKyCDNw1u1ORCHn"
+  },
+  "STRIPE_PRICE_CHAT_PARTS_MONTH_LEGACY": {
+    "type": "plain_text",
+    "value": "price_1UTPRrF4XZKyCDNwXPz2x2fx"
+  },
+  "STRIPE_PRICE_HUB_PARTS_MONTH_LEGACY": {
+    "type": "plain_text",
+    "value": "price_1UTPVXF4XZKyCDNwSp497Rkj"
+  },
+  "STRIPE_PRICE_COMPLETE_MONTH_LEGACY": {
+    "type": "plain_text",
+    "value": "price_1UTPWtF4XZKyCDNwycv5278Y"
+  }
+}
