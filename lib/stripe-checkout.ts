@@ -2,7 +2,7 @@ export function checkoutParameters(price: string, successUrl: string, cancelUrl:
   return new URLSearchParams({
     ui_mode: 'hosted_page',
     mode: 'subscription',
-    'subscription_data[trial_period_days]': '14',
+    'subscription_data[trial_period_days]': '30',
     billing_address_collection: 'auto',
     'phone_number_collection[enabled]': 'false',
     'automatic_tax[enabled]': 'false',

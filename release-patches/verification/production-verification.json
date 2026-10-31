@@ -1,0 +1,156 @@
+{
+  "releasedAtUTC": "2026-10-31T00:12:33Z",
+  "releaseDatePacific": "2026-10-30",
+  "status": "deployed_and_verified",
+  "production": {
+    "teamstead-crew": {
+      "id": "a153f2fd-fd63-4906-a361-fa85d070512c",
+      "url": "https://a153f2fd.teamstead-crew.pages.dev",
+      "canonicalURL": "https://teamstead-crew.pages.dev",
+      "status": "success",
+      "created_on": "2026-10-31T00:12:33.082409Z",
+      "files": {
+        "/app-icon.svg": "c33dcf7fd9f6f937cc7f77bc34c6eb91",
+        "/assets/index-CIdoTkjs.js": "f4278505a49807aef52cda396adf8533",
+        "/assets/index-DtDCwdKy.js": "bff70b1107db1baaad11ca5960a4c051",
+        "/assets/index-fcxDcs-e.css": "00373487d1ca1f8ee292890eea59bcb4",
+        "/chat-translation.css": "d9ad6350007db29f3f20543700f6beb0",
+        "/crew-appearance.css": "56f765b1443aebd67a2649d035263c83",
+        "/favicon.svg": "271afb340bcbe056c7b61fb865a9f584",
+        "/file.svg": "fcdb8cd43ad3d932835cf465e38833a7",
+        "/globe.svg": "110d92717921a4276e5d271cf6bf684f",
+        "/index.html": "bb80573e62a7360a25082435c5433e7e",
+        "/manifest.webmanifest": "fc31038eb5172af452b9346232cb7429",
+        "/offline.html": "0deb9de6a02c39370cbf224aba5c54aa",
+        "/parts/app-icon.svg": "c78d96bd3ad3907a14458529ade4ef2b",
+        "/parts/app.js": "076a02815c33d09d4383b3c8a8c1e229",
+        "/parts/index.html": "e8111885065e6f59c7a041d729d37c69",
+        "/parts/manifest.webmanifest": "9e8c7d663bb60be4b17b5c0c2567d147",
+        "/parts/styles.css": "79ecac80432c927d8f54f53c7221b4db",
+        "/paul-maurer-shows.jpg": "2e6fce064fd18841582b723d00d16a58",
+        "/pms-appearance.css": "4e989cc0e8ad5f3a8a5eb0be16016f10",
+        "/pms-appearance.js": "801ec31d10c2efa3c8feaaf5a728d899",
+        "/robots.txt": "7449a33a1700b7073a75b43477194126",
+        "/sw.js": "45d929d04fa4d0fbe159835f49fbaf72",
+        "/teamstead-apps.css": "ad77acd7fa387f37aca611ea2140b1c8",
+        "/teamstead-apps.js": "dfffbf6b37e08b2347c820e64a894550",
+        "/teamstead-install.js": "e13d8f944dc90ceaf5e7703e19be8d4d",
+        "/try/demo/demo.js": "3ca7035dc6ec0fe335fbb6144f78d5ff",
+        "/try/demo/index.html": "2164dc68b587a4ff793bd14b8ee9a288",
+        "/try/index.html": "69d865435755049db7ffba4bded13f38",
+        "/try/style.css": "5f85d9db6917970c9d3d6c734a7879ed",
+        "/welcome.css": "5d7c92a99694aaeec02fc6045e4e515a",
+        "/window.svg": "ccc6dc3fc50b4da372bbc920a54ce071"
+      }
+    },
+    "crew-maintenance": {
+      "id": "1b0debdc-e086-486b-a02b-b397281ede90",
+      "url": "https://1b0debdc.crew-maintenance.pages.dev",
+      "canonicalURL": "https://teamsteadcrew.com",
+      "status": "success",
+      "created_on": "2026-10-31T00:12:56.934662Z",
+      "files": {
+        "/404.html": "6675b6b91aafca37732fcde647b5aaf6",
+        "/checkout/checkout.css": "7d02b1f28bb4555f81095bbbf4f59cd1",
+        "/checkout/checkout.js": "f92f732df938305ba9e589f4dd52594b",
+        "/checkout/index.html": "9862ce9d317e2de888be7bfd21825ffd",
+        "/entry-links.js": "08597150fcc72bbc5807565bd8bdcc38",
+        "/icons/apple-touch-icon.png": "ab9034f7abebb4b3f888ef2e8dc91eca",
+        "/icons/icon-192.png": "3732d1cf83edf4d892a312e60b6e17cd",
+        "/icons/icon-512.png": "517a447d7d92e03e3aa236ee6738acb2",
+        "/icons/icon.svg": "0ad22d3486228a41a55448de0a32b7be",
+        "/icons/social.png": "9ba16f64d742fea05057a7b0a9b941d8",
+        "/icons/teamstead-hero-background.jpg": "ef1c4edf9e7caa0f26b31b980d22e2a5",
+        "/icons/teamstead-software-icon.png": "289ccd2882ec642b3d0eede4b1cdd222",
+        "/icons/teamstead-software-logo.png": "784f9dd52eaa6b272847801583df8b9a",
+        "/index.html": "3ab8be30fa623b0e4435951e1df59930",
+        "/install/index.html": "8c4ddcbe873af4517cc96de58904bd7a",
+        "/manifest.webmanifest": "c14f333dc7d3e39280932578b82f87f6",
+        "/offline.html": "ae55c53fd6bf036352a43018ffa152b8",
+        "/parts/index.html": "6862451841a5794fa88843cf48ae7812",
+        "/pricing/index.html": "cf5fb365d8cbd39296c0b10fe7edd0bb",
+        "/privacy/index.html": "d0339371ef17ee261603b413aed233bb",
+        "/public-install.js": "03ed571cc41fe1af360c404e40f5a36f",
+        "/public-sw.js": "e3255a3f7f6672b8fac908b100b852f7",
+        "/qa/checkout-flow.mjs": "13b49d6e4f5c4e4d1425a145c48372bd",
+        "/qa/serve.mjs": "f72c00e7c4ba02674569802fd3f5721a",
+        "/qa/verify-site.mjs": "1ad00034fccf9bf3b5b81308821e9a29",
+        "/robots.txt": "5211959f00e21e14dcb0687911e20b7a",
+        "/sitemap.xml": "93fc812d90b43390f07d84996b9523af",
+        "/support/index.html": "db5c0530e55595679ee2e7ce6378c990",
+        "/terms/index.html": "aed25cc1c5bf1f14101ca1e0fa577cf9",
+        "/try/demo/demo.js": "2b60d17b3325a86a438e8611bb5720cd",
+        "/try/demo/index.html": "9b6302c8d21dac19976344cbb84b2b8e",
+        "/try/index.html": "c7f5f1196867798e919af86527ba4684",
+        "/try/style.css": "607a28f280a39b42697ab3db08873ef4"
+      }
+    }
+  },
+  "monthlyUSD": {
+    "chat": 15,
+    "maintenance": 29,
+    "partsFinder": 19,
+    "chatMaintenance": 39,
+    "chatParts": 29,
+    "maintenanceParts": 39,
+    "complete": 49
+  },
+  "settings": {
+    "STRIPE_PRICE_CHAT_PARTS_MONTH": {
+      "type": "plain_text",
+      "value": "price_1UWPdyF4XZKyCDNw40TlAMR8"
+    },
+    "STRIPE_PRICE_HUB_PARTS_MONTH": {
+      "type": "plain_text",
+      "value": "price_1UWPe3F4XZKyCDNwhCrV364H"
+    },
+    "STRIPE_PRICE_COMPLETE_MONTH": {
+      "type": "plain_text",
+      "value": "price_1UWPe8F4XZKyCDNw1u1ORCHn"
+    },
+    "STRIPE_PRICE_CHAT_PARTS_MONTH_LEGACY": {
+      "type": "plain_text",
+      "value": "price_1UTPRrF4XZKyCDNwXPz2x2fx"
+    },
+    "STRIPE_PRICE_HUB_PARTS_MONTH_LEGACY": {
+      "type": "plain_text",
+      "value": "price_1UTPVXF4XZKyCDNwSp497Rkj"
+    },
+    "STRIPE_PRICE_COMPLETE_MONTH_LEGACY": {
+      "type": "plain_text",
+      "value": "price_1UTPWtF4XZKyCDNwycv5278Y"
+    }
+  },
+  "preserved": {
+    "trialDays": 30,
+    "annualPriceIDs": true,
+    "existingSubscriptions": true,
+    "secrets": true,
+    "data": true,
+    "storageBindings": true,
+    "compatibilityDate": "2026-10-10",
+    "productionCSS": true
+  },
+  "tests": {
+    "typescript": true,
+    "clientBuild": true,
+    "workerBuild": true,
+    "mockedCheckoutAndSignedWebhookAssertions": 489,
+    "livePublicPlanChoices": 7,
+    "liveApplicationSignupPlanChoices": 7,
+    "readOnlyStripePriceVerification": true
+  },
+  "limits": {
+    "liveCheckoutSubmitted": false,
+    "liveSubscriptionCreated": false,
+    "liveChargeCreated": false,
+    "liveSignedWebhookSent": false,
+    "authenticatedCompanyBillingPageEntered": false
+  },
+  "recovery": {
+    "publicBaselineFilesMatched": 33,
+    "appBaselineFilesMatched": 30,
+    "workerSourceBuildMatchesRecoveredArtifact": true,
+    "directDownloadOfPriorLiveWorkerAvailable": false
+  }
+}

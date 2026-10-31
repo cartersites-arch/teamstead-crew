@@ -22,8 +22,8 @@ const PLAN_PRICES:Record<ProductPlan,readonly [number,number]>={
   hub:[29,290],
   parts:[19,190],
   combined:[39,390],
-  chat_parts:[39,390],
-  hub_parts:[59,590],
-  complete:[79,790],
+  chat_parts:[29,390],
+  hub_parts:[39,590],
+  complete:[49,790],
 };
 export function planPrice(plan:ProductPlan){return PLAN_PRICES[plan];}

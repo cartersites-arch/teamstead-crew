@@ -17,6 +17,10 @@ declare namespace Cloudflare {
     STRIPE_PRICE_HUB_PARTS_YEAR?: string;
     STRIPE_PRICE_COMPLETE_MONTH?: string;
     STRIPE_PRICE_COMPLETE_YEAR?: string;
+    // Prior monthly prices remain valid for existing subscriptions and webhooks.
+    STRIPE_PRICE_CHAT_PARTS_MONTH_LEGACY?: string;
+    STRIPE_PRICE_HUB_PARTS_MONTH_LEGACY?: string;
+    STRIPE_PRICE_COMPLETE_MONTH_LEGACY?: string;
     SERPAPI_API_KEY?: string;
     STRIPE_SUCCESS_URL?: string;
     STRIPE_CANCEL_URL?: string;

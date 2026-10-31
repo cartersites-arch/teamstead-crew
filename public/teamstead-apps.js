@@ -3,6 +3,16 @@
   const onHub = host === 'pms-company-hub.pages.dev';
   const onParts = !onHub && location.pathname.startsWith('/parts');
   const current = onHub ? 'hub' : onParts ? 'parts' : 'chat';
+  const planProducts = {
+    chat: { chat: true, hub: false, parts: false },
+    hub: { chat: false, hub: true, parts: false },
+    parts: { chat: false, hub: false, parts: true },
+    combined: { chat: true, hub: true, parts: false },
+    chat_parts: { chat: true, hub: false, parts: true },
+    hub_parts: { chat: false, hub: true, parts: true },
+    complete: { chat: true, hub: true, parts: true },
+  };
+  let productPromise;
 
   function companyId() {
     if (onHub) {
@@ -47,6 +57,24 @@
     document.querySelectorAll('.crew-hub-link').forEach(node => { node.dataset.teamsteadRedundantAppLink = 'true'; });
   }
 
+  async function products() {
+    if (onHub) {
+      const plan = new URLSearchParams(location.search).get('teamsteadPlan');
+      return planProducts[plan] || null;
+    }
+    if (!productPromise) {
+      const query = companyQuery();
+      productPromise = fetch(`/api/chat${query ? `${query}&action=state` : '?action=state'}`, {
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' },
+      })
+        .then(response => response.ok ? response.json() : null)
+        .then(data => data && data.products ? data.products : null)
+        .catch(() => null);
+    }
+    return productPromise;
+  }
+
   function makeItem(key, label, href) {
     if (key === current) {
       const item = document.createElement('span');
@@ -62,9 +90,17 @@
     return item;
   }
 
-  function install() {
+  async function install() {
     hideDuplicateChatLinks();
     if (!signedInChat() || document.getElementById('teamstead-app-switcher')) return;
+    const enabled = await products();
+    if (!enabled || !signedInChat() || document.getElementById('teamstead-app-switcher')) return;
+    const available = [
+      enabled.chat && ['chat', 'Chat'],
+      enabled.hub && ['hub', 'Maintenance Hub'],
+      enabled.parts && ['parts', 'Parts Finder'],
+    ].filter(Boolean);
+    if (available.length < 2 || !available.some(([key]) => key !== current)) return;
     const links = destinations();
     const details = document.createElement('details');
     details.id = 'teamstead-app-switcher';
@@ -74,18 +110,14 @@
     summary.textContent = 'Teamstead Apps';
     const nav = document.createElement('nav');
     nav.setAttribute('aria-label', 'Teamstead apps');
-    nav.append(
-      makeItem('chat', 'Chat', links.chat),
-      makeItem('hub', 'Maintenance Hub', links.hub),
-      makeItem('parts', 'Parts Finder', links.parts),
-    );
+    nav.append(...available.map(([key, label]) => makeItem(key, label, links[key])));
     details.append(summary, nav);
     document.body.append(details);
   }
 
   const start = () => {
-    install();
-    new MutationObserver(install).observe(document.body, { childList: true, subtree: true });
+    void install();
+    new MutationObserver(() => { void install(); }).observe(document.body, { childList: true, subtree: true });
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
   else start();

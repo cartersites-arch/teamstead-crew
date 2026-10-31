@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Checkout | Teamstead Crew</title>
+  <meta name="description" content="Review your Teamstead Crew plan, set up your company, and continue to secure Stripe checkout.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://teamsteadcrew.com/checkout/">
+  <link rel="stylesheet" href="/try/style.css">
+  <link rel="stylesheet" href="/checkout/checkout.css">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <script src="/checkout/checkout.js" defer></script>
+</head>
+<body class="theme-page checkout-page">
+  <header class="site-header"><a class="brand" href="/" aria-label="Teamstead Software home"><img class="brand-logo" src="/icons/teamstead-software-logo.png" alt="Teamstead Software"></a><nav><a href="/pricing/">Compare plans</a><a class="button small secondary" href="https://teamstead-crew.pages.dev/">Company sign in</a></nav></header>
+  <main>
+    <section class="section checkout-section">
+      <div class="checkout-heading"><p class="eyebrow">TEAMSTEAD CREW · COMPANY SUBSCRIPTION</p><h1>Make room for better teamwork.</h1><p class="lead">Choose your tools. Set up your company. Review your subscription securely with Stripe.</p></div>
+      <ol class="checkout-steps" aria-label="Checkout steps"><li aria-current="step"><span>1</span> Choose your plan</li><li><span>2</span> Company &amp; passkey</li><li><span>3</span> Secure payment</li></ol>
+      <div class="checkout-layout">
+        <div>
+          <fieldset class="checkout-plans"><legend>Your company plan</legend>
+            <label class="checkout-plan"><input type="radio" name="plan" value="chat"><span><strong>Crew Chat</strong><small>Company channels and direct messages</small></span><b>$15<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="hub"><span><strong>Maintenance Hub</strong><small>Work requests, equipment and repair records</small></span><b>$29<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="parts"><span><strong>Parts Finder</strong><small>Parts research and shared shopping lists</small></span><b>$19<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="combined"><span><strong>Chat + Maintenance</strong><small>Conversations connected to maintenance work</small></span><b>$39<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="chat_parts"><span><strong>Chat + Parts</strong><small>Conversations and shared parts research</small></span><b>$29<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="hub_parts"><span><strong>Maintenance + Parts</strong><small>Repair records and parts research</small></span><b>$39<small>/month</small></b></label>
+            <label class="checkout-plan"><input type="radio" name="plan" value="complete" checked><span><strong>Complete suite</strong><small>Crew Chat, Maintenance Hub and Parts Finder</small></span><b>$49<small>/month</small></b></label>
+          </fieldset>
+          <div class="checkout-explainer"><h2>A company account comes first.</h2><p>Your subscription belongs to your company workspace. Next, create your company and secure your owner account with a passkey. You can review billing before starting a subscription.</p><p>Already have a company? <a href="https://teamstead-crew.pages.dev/">Sign in</a>, then open <strong>Company billing</strong> in company administration. Use your existing company to avoid duplicate subscriptions.</p></div>
+        </div>
+        <aside class="checkout-summary" aria-label="Plan summary">
+          <p class="eyebrow">YOUR PLAN</p><h2 id="summary-name">Complete suite</h2><p id="summary-description">Crew Chat, Maintenance Hub and Parts Finder</p>
+          <div class="checkout-total"><strong id="summary-price">$49</strong><span>/month · USD</span></div>
+          <p>One company location · Up to 10 active members · Monthly price shown</p>
+          <div class="checkout-trial"><strong>30-day trial on your first subscription</strong><p>A payment method is collected by Stripe. Cancel before the trial ends to avoid a subscription charge.</p></div>
+          <p class="checkout-renewal" id="summary-renewal">After the trial, $49 USD is billed monthly unless canceled. Any applicable tax and the final terms are shown before you subscribe.</p>
+          <a class="button checkout-continue" id="continue-checkout" href="https://teamstead-crew.pages.dev/signup/?plan=complete">Continue to company setup <span aria-hidden="true">→</span></a>
+          <p class="fine-print">This step does not start a trial or charge your card. After company setup, choose monthly or annual billing in Company Billing and review the final amount on Stripe.</p>
+          <div class="checkout-links"><a href="/terms/">Service information</a><a href="/support/">Cancellation &amp; support</a></div>
+        </aside>
+      </div>
+      <noscript><p class="checkout-noscript">JavaScript is needed to change the plan summary. You can <a href="https://teamstead-crew.pages.dev/signup/">choose your plan during company setup</a>.</p></noscript>
+    </section>
+  </main>
+  <footer><span>Teamstead Crew by Teamstead Software</span><a href="/privacy/">Privacy</a><a href="/support/">Need a hand?</a></footer>
+</body>
+</html>

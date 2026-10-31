@@ -9,8 +9,8 @@ try{
  const missing=await h.request(owner,'open',{query:{form:'problem',viewer:'owner'}});assert.equal(missing.status,303);assert.equal(missing.headers.get('location'),'/?section=maintenance');
  await h.request(owner,'maintenance',{method:'POST',body:{action:'connect',link:'https://pms-company-hub.pages.dev/#hub='+token}});
  const redirected=await h.request(owner,'open',{query:{form:'problem',viewer:'owner'}});assert.equal(redirected.status,303);
- const url=new URL(redirected.headers.get('location'));assert.equal(url.origin,'https://pms-company-hub.pages.dev');assert.equal(url.pathname,'/request');assert.equal(new URLSearchParams(url.hash.slice(1)).get('hub'),token);assert.equal(redirected.headers.get('referrer-policy'),'no-referrer');assert.equal(redirected.headers.get('cache-control'),'private, no-store');
+ const url=new URL(redirected.headers.get('location'));assert.equal(url.origin,'https://pms-company-hub.pages.dev');assert.equal(url.pathname,'/request');assert.equal(url.searchParams.get('teamsteadPlan'),'complete');assert.equal(new URLSearchParams(url.hash.slice(1)).get('hub'),token);assert.equal(redirected.headers.get('referrer-policy'),'no-referrer');assert.equal(redirected.headers.get('cache-control'),'private, no-store');
  const normal=await h.request(owner,'open',{query:{viewer:'owner'}});assert.equal(new URL(normal.headers.get('location')).pathname,'/');
  const changed=await h.request(owner,'open',{query:{form:'problem',viewer:'someone-else'}});assert.equal(changed.headers.get('location'),'/?section=maintenance');
- console.log('Passed 10 private Hub shortcut checks.');
+ console.log('Passed 11 private Hub shortcut checks.');
 }finally{h.close();}
