@@ -15,6 +15,7 @@ import * as workspaces from '../app/api/workspaces/route';
 import { workspaceAttestation } from '../lib/workspace-attestation';
 import * as access from '../app/api/access/route';
 import * as passkeys from '../app/api/passkeys/route';
+import * as passwords from '../app/api/passwords/route';
 import * as chat from '../app/api/chat/route';
 import * as maintenance from '../app/api/maintenance/route';
 import * as workOrders from '../app/api/work-orders/route';
@@ -41,6 +42,7 @@ const routes: Record<string, Route> = {
   '/api/workspace-attestation': {POST:workspaceAttestation},
   '/api/access': access,
   '/api/passkeys': passkeys,
+  '/api/passwords': passwords,
   '/api/chat': chat,
   '/api/maintenance': maintenance,
   '/api/work-orders': workOrders,

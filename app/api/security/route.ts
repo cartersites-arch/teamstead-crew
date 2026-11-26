@@ -10,11 +10,11 @@ export async function GET(){try{
   const me=await currentSession(),now=Date.now();
   const [keys,sessions,events,maintenance,workspace,photosPending]=await Promise.all([
     db().prepare('SELECT id,name,device_type,backed_up,created_at,last_used_at FROM passkeys WHERE user_id = ? ORDER BY created_at').bind(me.id).all(),
-    db().prepare('SELECT id,device_label,created_at,last_seen_at,expires_at FROM sessions WHERE user_id = ? AND auth_level = ? AND auth_version = ? AND expires_at > ? ORDER BY created_at DESC').bind(me.id,'passkey',me.auth_version,now).all(),
+    db().prepare('SELECT id,device_label,created_at,last_seen_at,expires_at FROM sessions WHERE user_id = ? AND auth_level IN (?,?) AND auth_version = ? AND expires_at > ? ORDER BY created_at DESC').bind(me.id,'passkey','password',me.auth_version,now).all(),
     db().prepare('SELECT e.id,e.action,e.at,actor.name AS actor,target.name AS target FROM security_events e LEFT JOIN people actor ON actor.id = e.actor_id LEFT JOIN people target ON target.id = e.target_id'+(me.role==='owner'?'':' WHERE e.actor_id = ? OR e.target_id = ?')+' ORDER BY e.at DESC LIMIT 50').bind(...(me.role==='owner'?[]:[me.id,me.id])).all(),
     connectionStatus(me.id),db().prepare('SELECT ai_enabled FROM workspace WHERE id = ?').bind('main').first(),pendingDeletionCount(me),
   ]);
-  return response({keys:keys.results,sessions:sessions.results.map(s=>({...s,current:s.id===me.session_id})),events:events.results,maintenance,aiEnabled:!!workspace?.ai_enabled,photosPending,photoStorage:await photoStorageUsage()});
+  return response({keys:keys.results,sessions:sessions.results.map(s=>({...s,current:s.id===me.session_id})),events:events.results,maintenance,aiEnabled:!!workspace?.ai_enabled,photosPending,photoStorage:await photoStorageUsage(),password:{hasPassword:!!me.has_password,email:me.email}});
 }catch(e){return handleError(e);}}
 export async function POST(request:Request){try{
   checkOrigin(request);const me=await requireRecent();if(!request.headers.get('content-type')?.startsWith('application/json'))fail(415,'Use a supported settings format.');

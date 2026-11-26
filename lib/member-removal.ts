@@ -25,7 +25,7 @@ export async function removeCompanyPerson(me:SessionPerson,data:Record<string,un
  const changes=await database.batch([gate.statement,
   ...(successor?[rawDb().prepare('UPDATE company_registry SET owner_id=? WHERE id=? AND owner_id=? AND '+companySql(gate.condition,companyId())).bind(successor,companyId(),id),database.prepare("UPDATE workspace SET owner_id=? WHERE id='main' AND "+gate.condition).bind(successor),database.prepare("UPDATE people SET role='owner' WHERE id=? AND "+gate.condition).bind(successor)]:[]),
   ...['room_members','maintenance_links','sessions','access_tokens','passkeys','passkey_challenges'].map(table=>database.prepare('DELETE FROM '+table+' WHERE user_id=? AND '+gate.condition).bind(id)),
-  database.prepare("UPDATE people SET active=0,role='member',auth_version=auth_version+1 WHERE id=? AND "+gate.condition).bind(id)
+  database.prepare("UPDATE people SET active=0,role='member',password_hash=NULL,auth_version=auth_version+1 WHERE id=? AND "+gate.condition).bind(id)
  ]);
  if(!changes[0].meta.changes)fail(409,'Access changed. Refresh People and confirm your passkey before trying again.');
  return {ok:true,leftCompany:self,newOwnerId:successor};

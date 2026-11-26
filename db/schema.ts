@@ -4,7 +4,7 @@ export const workspace = sqliteTable('workspace', {
   id: text('id').primaryKey(), name: text('name').notNull(), ownerId: text('owner_id').notNull(), accessBootstrapped: integer('access_bootstrapped').notNull().default(0), createdAt: integer('created_at').notNull(), aiEnabled: integer('ai_enabled').notNull().default(1),
 });
 export const people = sqliteTable('people', {
-  id: text('id').primaryKey(), email: text('email').notNull(), name: text('name').notNull(), role: text('role').notNull().default('member'), active: integer('active').notNull().default(1), joinedAt: integer('joined_at').notNull(), authVersion: integer('auth_version').notNull().default(1), passkeyEnrolled: integer('passkey_enrolled').notNull().default(0), webauthnUserId: text('webauthn_user_id'),
+  id: text('id').primaryKey(), email: text('email').notNull(), name: text('name').notNull(), role: text('role').notNull().default('member'), active: integer('active').notNull().default(1), joinedAt: integer('joined_at').notNull(), authVersion: integer('auth_version').notNull().default(1), passkeyEnrolled: integer('passkey_enrolled').notNull().default(0), webauthnUserId: text('webauthn_user_id'), passwordHash: text('password_hash'),
 });
 export const rooms = sqliteTable('rooms', {
   id: text('id').primaryKey(), name: text('name').notNull(), description: text('description').notNull().default(''), kind: text('kind').notNull().default('channel'), visibility: text('visibility').notNull().default('private'), dmKey: text('dm_key'), createdBy: text('created_by').notNull(), createdAt: integer('created_at').notNull(),

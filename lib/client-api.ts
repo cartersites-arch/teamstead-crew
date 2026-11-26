@@ -18,7 +18,10 @@ function json(data:Record<string,unknown>):RequestInit{return {method:'POST',hea
 export async function request<T=Record<string,unknown>>(endpoint:string,init?:RequestInit):Promise<T>{
   try{return await rawRequest<T>(endpoint,init);}catch(e){
     if(!(e instanceof ApiError)||e.status!==428)throw e;
-    if(!confirming)confirming=signInWithPasskey(true).then(()=>{}).finally(()=>{confirming=null;});
+    // Passkey sessions re-confirm with their passkey. If that is unavailable
+    // (for example a password-only account), surface the original 428 so the
+    // person can sign in again with their password instead of a passkey error.
+    if(!confirming)confirming=signInWithPasskey(true).then(()=>{}).catch(()=>{throw e;}).finally(()=>{confirming=null;});
     await confirming;return rawRequest<T>(endpoint,init);
   }
 }
@@ -28,6 +31,15 @@ export async function signInWithPasskey(reauth=false){
   const options=await rawRequest<{options:PublicKeyCredentialRequestOptionsJSON;challengeId:string}>('/api/passkeys',json({action:'auth_options',purpose}));
   let response;try{response=await startAuthentication({optionsJSON:options.options});}catch{throw new Error('Passkey sign-in was cancelled or unavailable. You can try again.');}
   return rawRequest<{ok:boolean;userId:string}>('/api/passkeys',json({action:'auth_verify',purpose,challengeId:options.challengeId,response}));
+}
+export async function signInWithPassword(email:string,password:string){
+  return rawRequest<{ok:boolean;userId:string}>('/api/passwords',json({action:'sign_in',email,password}));
+}
+export async function setPassword(email:string,password:string){
+  return request<{ok:boolean;userId:string}>('/api/passwords',json({action:'set_password',email,password}));
+}
+export async function confirmWithPassword(password:string){
+  return rawRequest<{ok:boolean;userId:string}>('/api/passwords',json({action:'reauth',password}));
 }
 export async function addPasskey(name=''){
   supported();const options=await request<{options:PublicKeyCredentialCreationOptionsJSON;challengeId:string}>('/api/passkeys',json({action:'register_options'}));
